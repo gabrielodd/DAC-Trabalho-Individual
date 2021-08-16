@@ -19,8 +19,9 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
-import modelo.Evento;
-import DAO.JPAEventoDAO;
+import modelo.Volume;
+import DAO.JPAVolumeDAO;
+import java.util.Date;
 
 
 /**
@@ -29,30 +30,36 @@ import DAO.JPAEventoDAO;
  */
 @Stateless
 @Path("evento")
-public class EventoFacadeREST extends AbstractFacade<Evento> {
+public class VolumeFacadeREST extends AbstractFacade<Volume> {
 
     @PersistenceContext(unitName = "WebServicePU")
     private EntityManager em;
 
-    public EventoFacadeREST() {
-        super(Evento.class);
+    public VolumeFacadeREST() {
+        super(Volume.class);
     }
 
     @POST
     @Consumes({MediaType.APPLICATION_FORM_URLENCODED})
-    public void create(@FormParam("nome") String nome, @FormParam("area") String area, @FormParam("inst") String inst) {
-        JPAEventoDAO dao = new JPAEventoDAO();
-        Evento e = new Evento();
-        e.setNome(nome);
-        e.setArea(area);
-        e.setInst(inst);
+    public void create(@FormParam("sigla") String sigla, @FormParam("cidade") String cidade,
+    @FormParam("desc_pt") String desc_pt, @FormParam("desc_en") String desc_en, @FormParam("num_edicao") int num_edicao
+    //,@FormParam("data_inicio") Date data_inicio
+    ) {
+        JPAVolumeDAO dao = new JPAVolumeDAO();
+        Volume e = new Volume();
+        e.setSigla_evento(sigla);
+        e.setCidade(cidade);
+        e.setDescricao_pt(desc_pt);
+        e.setDescricao_en(desc_en);
+        e.setNumero_edicao(num_edicao);
+        //e.setData_inicio(data_inicio);
         dao.salva(e);
     }
 
     @PUT
     @Path("{id}")
     @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public void edit(@PathParam("id") Long id, Evento entity) {
+    public void edit(@PathParam("id") Long id, Volume entity) {
         super.edit(entity);
     }
 
@@ -65,21 +72,21 @@ public class EventoFacadeREST extends AbstractFacade<Evento> {
     @GET
     @Path("{id}")
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public Evento find(@PathParam("id") Long id) {
+    public Volume find(@PathParam("id") Long id) {
         return super.find(id);
     }
 
     @GET
     @Override
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public List<Evento> findAll() {
+    public List<Volume> findAll() {
         return super.findAll();
     }
 
     @GET
     @Path("{from}/{to}")
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public List<Evento> findRange(@PathParam("from") Integer from, @PathParam("to") Integer to) {
+    public List<Volume> findRange(@PathParam("from") Integer from, @PathParam("to") Integer to) {
         return super.findRange(new int[]{from, to});
     }
 

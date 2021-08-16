@@ -5,15 +5,15 @@
  */
 package DAO;
 
-import modelo.Evento;
+import modelo.Volume;
 import java.util.List;
 
-public interface EventoDAO {
-    void salva(Evento e);
+public interface VolumeDAO {
+    void salva(Volume e);
 
-    Evento recupera(Long id);
+    Volume recupera(Long id);
 
-    List<Evento> buscaNome(String nome);
+    List<Volume> buscaNome(String nome);
 
-    List<Evento> buscaTudo();
+    List<Volume> buscaTudo();
 }

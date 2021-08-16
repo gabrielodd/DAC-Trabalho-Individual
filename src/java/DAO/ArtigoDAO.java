@@ -5,15 +5,15 @@
  */
 package DAO;
 
-import modelo.Evento;
+import modelo.Artigo;
 import java.util.List;
 
-public interface EdicaoDAO {
-    void salva(Evento e);
+public interface ArtigoDAO {
+    void salva(Artigo e);
 
-    Evento recupera(Long id);
+    Artigo recupera(Long id);
 
-    List<Evento> buscaNome(String nome);
+    List<Artigo> buscaNome(String nome);
 
-    List<Evento> buscaTudo();
+    List<Artigo> buscaTudo();
 }

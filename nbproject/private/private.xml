@@ -3,7 +3,17 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/C:/Users/Micro/Documents/NetBeansProjects/WebService/src/java/DAO/JPAEventoDAO.java</file>
+            <file>file:/C:/Users/Micro/Documents/NetBeansProjects/WebService/src/java/service/AbstractFacade.java</file>
+            <file>file:/C:/Users/Micro/Documents/NetBeansProjects/WebService/src/java/service/EventoFacadeREST.java</file>
             <file>file:/C:/Users/Micro/Documents/NetBeansProjects/WebService/web/index.html</file>
+            <file>file:/C:/Users/Micro/Documents/NetBeansProjects/WebService/src/java/DAO/EventoDAO.java</file>
+            <file>file:/C:/Users/Micro/Documents/NetBeansProjects/WebService/src/java/DAO/JPAEdicaoDAO.java</file>
+            <file>file:/C:/Users/Micro/Documents/NetBeansProjects/WebService/src/java/modelo/Autor.java</file>
+            <file>file:/C:/Users/Micro/Documents/NetBeansProjects/WebService/src/java/DAO/JPAUtil.java</file>
+            <file>file:/C:/Users/Micro/Documents/NetBeansProjects/WebService/src/java/modelo/Artigo.java</file>
+            <file>file:/C:/Users/Micro/Documents/NetBeansProjects/WebService/src/java/DAO/EdicaoDAO.java</file>
+            <file>file:/C:/Users/Micro/Documents/NetBeansProjects/WebService/src/java/modelo/Volume.java</file>
         </group>
     </open-files>
 </project-private>

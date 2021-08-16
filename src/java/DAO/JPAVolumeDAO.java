@@ -8,19 +8,19 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Query;
-import modelo.Evento;
+import modelo.Volume;
 
 /**
  *
  * @author Micro
  */
-public class JPAEventoDAO {
+public class JPAVolumeDAO {
     private EntityManager em;
     
-    public JPAEventoDAO() {
+    public JPAVolumeDAO() {
     }
         
-    public void salva(Evento e) {
+    public void salva(Volume e) {
         
         em = JPAUtil.getEM();
         EntityTransaction et = em.getTransaction();
@@ -30,12 +30,12 @@ public class JPAEventoDAO {
         em.close();
     }
     
-    public Evento recupera(Long id) {
+    public Volume recupera(Long id) {
         
         em = JPAUtil.getEM();
         EntityTransaction et = em.getTransaction();
         et.begin();
-        Evento e = em.find(Evento.class, id);
+        Volume e = em.find(Volume.class, id);
         et.commit();
         em.close();
         return e;
@@ -46,27 +46,27 @@ public class JPAEventoDAO {
         em = JPAUtil.getEM();
         EntityTransaction et = em.getTransaction();
         et.begin();
-        Evento e = em.find(Evento.class, id);
+        Volume e = em.find(Volume.class, id);
         em.remove(e);
         et.commit();
         em.close();
     }
     
-    public List<Evento> buscaNome(String nome) {
+    public List<Volume> buscaNome(String nome) {
         String jpqlQuery = "SELECT e FROM Entrada e where e.sobrenome = :sn";
         em = JPAUtil.getEM();
         Query query = em.createQuery(jpqlQuery);
         query.setParameter("sn", nome);
-        List<Evento> e = query.getResultList();
+        List<Volume> e = query.getResultList();
         em.close();
         return e;
     }
     
-    public List<Evento> buscaTudo() {
+    public List<Volume> buscaTudo() {
         String jpqlQuery = "SELECT e FROM Entrada e";
         em = JPAUtil.getEM();
         Query query = em.createQuery(jpqlQuery);
-        List<Evento> e = query.getResultList();
+        List<Volume> e = query.getResultList();
         em.close();
         return e;
     }

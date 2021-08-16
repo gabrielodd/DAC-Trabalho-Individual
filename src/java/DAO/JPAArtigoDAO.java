@@ -16,7 +16,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Micro
  */
-public class JPAEdicaoDAO extends HttpServlet {
+public class JPAArtigoDAO extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>

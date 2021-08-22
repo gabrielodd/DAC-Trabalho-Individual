@@ -5,6 +5,7 @@
  */
 package service;
 
+import DAO.JPAArtigoDAO;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -19,8 +20,9 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
-import modelo.Volume;
-import DAO.JPAVolumeDAO;
+import modelo.Autor;
+import DAO.JPAAutorDAO;
+import modelo.Artigo;
 
 
 /**
@@ -28,37 +30,43 @@ import DAO.JPAVolumeDAO;
  * @author Micro
  */
 @Stateless
-@Path("volume")
-public class VolumeFacadeREST extends AbstractFacade<Volume> {
+@Path("autor")
+public class AutorFacadeREST extends AbstractFacade<Autor> {
 
     @PersistenceContext(unitName = "WebServicePU")
     private EntityManager em;
 
-    public VolumeFacadeREST() {
-        super(Volume.class);
+    public AutorFacadeREST() {
+        super(Autor.class);
     }
 
     @POST
     @Consumes({MediaType.APPLICATION_FORM_URLENCODED})
-    public void create(@FormParam("sigla") String sigla, @FormParam("cidade") String cidade,
-    @FormParam("desc_pt") String desc_pt, @FormParam("desc_en") String desc_en, @FormParam("num_edicao") int num_edicao
-    ,@FormParam("data_inicio") String data_inicio
-    ) {
-        JPAVolumeDAO dao = new JPAVolumeDAO();
-        Volume e = new Volume();
-        e.setSigla_evento(sigla);
-        e.setCidade(cidade);
-        e.setDescricao_pt(desc_pt);
-        e.setDescricao_en(desc_en);
-        e.setNumero_edicao(num_edicao);
-        e.setData_inicio(data_inicio);
+    public void create(@FormParam("email") String email, @FormParam("ordem_artigo") int ordem_artigo,
+    @FormParam("primeiro_nome") String primeiro_nome, @FormParam("nome_meio") String nome_meio, 
+    @FormParam("sobrenome") String sobrenome, @FormParam("afiliacao") String afiliacao,
+    @FormParam("afiliacao_ingles") String afiliacao_ingles, @FormParam("pais") String pais,
+    @FormParam("registro_orc_id") String registro_orc_id, @FormParam("artigo") Long artigo_id) {
+        JPAAutorDAO dao = new JPAAutorDAO();
+        JPAArtigoDAO artigo_dao = new JPAArtigoDAO();
+        Autor e = new Autor();
+        e.setEmail(email);
+        e.setPrimeiro_nome(primeiro_nome);
+        e.setNome_meio(nome_meio);
+        e.setSobrenome(sobrenome);
+        e.setAfiliacao(afiliacao);
+        e.setAfiliacao_ingles(afiliacao_ingles);
+        e.setRegistro_orc_id(registro_orc_id);
+        e.setPais(pais);
+        Artigo artigo = artigo_dao.recupera(artigo_id);
+        e.setArtigo_id(artigo);
         dao.salva(e);
     }
 
     @PUT
     @Path("{id}")
     @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public void edit(@PathParam("id") Long id, Volume entity) {
+    public void edit(@PathParam("id") Long id, Autor entity) {
         super.edit(entity);
     }
 
@@ -71,21 +79,21 @@ public class VolumeFacadeREST extends AbstractFacade<Volume> {
     @GET
     @Path("{id}")
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public Volume find(@PathParam("id") Long id) {
+    public Autor find(@PathParam("id") Long id) {
         return super.find(id);
     }
 
     @GET
     @Override
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public List<Volume> findAll() {
+    public List<Autor> findAll() {
         return super.findAll();
     }
 
     @GET
     @Path("{from}/{to}")
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public List<Volume> findRange(@PathParam("from") Integer from, @PathParam("to") Integer to) {
+    public List<Autor> findRange(@PathParam("from") Integer from, @PathParam("to") Integer to) {
         return super.findRange(new int[]{from, to});
     }
 

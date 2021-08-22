@@ -5,15 +5,13 @@
  */
 package DAO;
 
-import modelo.Volume;
+import modelo.Autor;
 import java.util.List;
 
-public interface VolumeDAO {
-    void salva(Volume e);
+public interface AutorDAO {
+    void salva(Autor e);
 
-    Volume recupera(Long id);
+    Autor recupera(Long id);
 
-    List<Volume> buscaCidade(String nome);
-
-    List<Volume> buscaTudo();
+    List<Autor> buscaTudo();
 }

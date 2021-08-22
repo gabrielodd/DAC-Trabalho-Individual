@@ -23,20 +23,18 @@ public class JPAVolumeDAO {
     public void salva(Volume e) {
         
         em = JPAUtil.getEM();
-        EntityTransaction et = em.getTransaction();
-        et.begin();
+        //EntityTransaction et = em.getTransaction();
         em.persist(e);
-        et.commit();
         em.close();
     }
     
     public Volume recupera(Long id) {
         
         em = JPAUtil.getEM();
-        EntityTransaction et = em.getTransaction();
-        et.begin();
+        //EntityTransaction et = em.getTransaction();
+        //et.begin();
         Volume e = em.find(Volume.class, id);
-        et.commit();
+        //et.commit();
         em.close();
         return e;
     }
@@ -44,16 +42,16 @@ public class JPAVolumeDAO {
     public void deleta(Long id) {
         
         em = JPAUtil.getEM();
-        EntityTransaction et = em.getTransaction();
-        et.begin();
+        //EntityTransaction et = em.getTransaction();
+        //et.begin();
         Volume e = em.find(Volume.class, id);
         em.remove(e);
-        et.commit();
+        //et.commit();
         em.close();
     }
     
-    public List<Volume> buscaNome(String nome) {
-        String jpqlQuery = "SELECT e FROM Entrada e where e.sobrenome = :sn";
+    public List<Volume> buscaCidade(String nome) {
+        String jpqlQuery = "SELECT e FROM Volume e where e.cidade = :sn";
         em = JPAUtil.getEM();
         Query query = em.createQuery(jpqlQuery);
         query.setParameter("sn", nome);
@@ -63,7 +61,7 @@ public class JPAVolumeDAO {
     }
     
     public List<Volume> buscaTudo() {
-        String jpqlQuery = "SELECT e FROM Entrada e";
+        String jpqlQuery = "SELECT e FROM Volume e";
         em = JPAUtil.getEM();
         Query query = em.createQuery(jpqlQuery);
         List<Volume> e = query.getResultList();

@@ -7,12 +7,14 @@ package modelo;
 
 import java.io.Serializable;
 import javax.persistence.*;
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
  * @author Micro
  */
 @Entity
+@XmlRootElement
 public class Autor implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -21,7 +23,7 @@ public class Autor implements Serializable {
     private Long id;
     @ManyToOne
     @JoinColumn(name = "artigo_id")
-    private Artigo artigo;
+    private Artigo artigo_id;
     private int ordem_artigo;
     private String email;
     private String primeiro_nome;
@@ -40,12 +42,12 @@ public class Autor implements Serializable {
         this.id = id;
     }
 
-    public Artigo getArtigo() {
-        return artigo;
+    public Artigo getArtigo_id() {
+        return artigo_id;
     }
 
-    public void setArtigo(Artigo artigo) {
-        this.artigo = artigo;
+    public void setArtigo_id(Artigo artigo_id) {
+        this.artigo_id = artigo_id;
     }
 
     public int getOrdem_artigo() {

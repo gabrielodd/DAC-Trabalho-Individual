@@ -8,35 +8,35 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Query;
-import modelo.Artigo;
+import modelo.Autor;
 
 /**
  *
  * @author Micro
  */
-public class JPAArtigoDAO {
+public class JPAAutorDAO {
     private EntityManager em;
     
-    public JPAArtigoDAO() {
+    public JPAAutorDAO() {
     }
         
-    public void salva(Artigo a) {
+    public void salva(Autor e) {
         
         em = JPAUtil.getEM();
         //EntityTransaction et = em.getTransaction();
-        em.persist(a);
+        em.persist(e);
         em.close();
     }
     
-    public Artigo recupera(Long id) {
+    public Autor recupera(Long id) {
         
         em = JPAUtil.getEM();
         //EntityTransaction et = em.getTransaction();
         //et.begin();
-        Artigo a = em.find(Artigo.class, id);
+        Autor e = em.find(Autor.class, id);
         //et.commit();
         em.close();
-        return a;
+        return e;
     }
     
     public void deleta(Long id) {
@@ -44,18 +44,18 @@ public class JPAArtigoDAO {
         em = JPAUtil.getEM();
         //EntityTransaction et = em.getTransaction();
         //et.begin();
-        Artigo a = em.find(Artigo.class, id);
-        em.remove(a);
+        Autor e = em.find(Autor.class, id);
+        em.remove(e);
         //et.commit();
         em.close();
     }
-
-    public List<Artigo> buscaTudo() {
-        String jpqlQuery = "SELECT a FROM Artigo a";
+    
+    public List<Autor> buscaTudo() {
+        String jpqlQuery = "SELECT e FROM Autor e";
         em = JPAUtil.getEM();
         Query query = em.createQuery(jpqlQuery);
-        List<Artigo> a = query.getResultList();
+        List<Autor> e = query.getResultList();
         em.close();
-        return a;
+        return e;
     }
 }

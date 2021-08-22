@@ -3,17 +3,23 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Micro/Documents/NetBeansProjects/WebService/src/java/DAO/JPAEventoDAO.java</file>
-            <file>file:/C:/Users/Micro/Documents/NetBeansProjects/WebService/src/java/service/AbstractFacade.java</file>
-            <file>file:/C:/Users/Micro/Documents/NetBeansProjects/WebService/src/java/service/EventoFacadeREST.java</file>
+            <file>file:/C:/Users/Micro/Documents/NetBeansProjects/WebService/src/java/DAO/VolumeDAO.java</file>
+            <file>file:/C:/Users/Micro/Documents/NetBeansProjects/WebService/web/WEB-INF/web.xml</file>
             <file>file:/C:/Users/Micro/Documents/NetBeansProjects/WebService/web/index.html</file>
-            <file>file:/C:/Users/Micro/Documents/NetBeansProjects/WebService/src/java/DAO/EventoDAO.java</file>
-            <file>file:/C:/Users/Micro/Documents/NetBeansProjects/WebService/src/java/DAO/JPAEdicaoDAO.java</file>
+            <file>file:/C:/Users/Micro/Documents/NetBeansProjects/WebService/src/java/DAO/JPAArtigoDAO.java</file>
+            <file>file:/C:/Users/Micro/Documents/NetBeansProjects/WebService/src/java/service/VolumeFacadeREST.java</file>
+            <file>file:/C:/Users/Micro/Documents/NetBeansProjects/WebService/web/cadastra.html</file>
+            <file>file:/C:/Users/Micro/Documents/NetBeansProjects/WebService/nbproject/build-impl.xml</file>
+            <file>file:/C:/Users/Micro/Documents/NetBeansProjects/WebService/src/java/service/ArtigoFacadeREST.java</file>
+            <file>file:/C:/Users/Micro/Documents/NetBeansProjects/WebService/src/java/service/AbstractFacade.java</file>
+            <file>file:/C:/Users/Micro/Documents/NetBeansProjects/WebService/src/java/DAO/JPAVolumeDAO.java</file>
+            <file>file:/C:/Users/Micro/Documents/NetBeansProjects/WebService/src/java/controle/ArtigosController.java</file>
+            <file>file:/C:/Users/Micro/Documents/NetBeansProjects/WebService/src/java/DAO/ArtigoDAO.java</file>
             <file>file:/C:/Users/Micro/Documents/NetBeansProjects/WebService/src/java/modelo/Autor.java</file>
             <file>file:/C:/Users/Micro/Documents/NetBeansProjects/WebService/src/java/DAO/JPAUtil.java</file>
             <file>file:/C:/Users/Micro/Documents/NetBeansProjects/WebService/src/java/modelo/Artigo.java</file>
-            <file>file:/C:/Users/Micro/Documents/NetBeansProjects/WebService/src/java/DAO/EdicaoDAO.java</file>
             <file>file:/C:/Users/Micro/Documents/NetBeansProjects/WebService/src/java/modelo/Volume.java</file>
+            <file>file:/C:/Users/Micro/Documents/NetBeansProjects/WebService/web/cadastra_artigo.jsp</file>
         </group>
     </open-files>
 </project-private>

@@ -6,18 +6,21 @@
 package modelo;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
  * @author Micro
  */
 @Entity
+@XmlRootElement
 public class Artigo implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -26,7 +29,7 @@ public class Artigo implements Serializable {
     private Long id;
     @ManyToOne
     @JoinColumn(name = "volume_id")
-    private Volume volume;
+    private Volume volume_id;
     private int ordem_volume;
     private String idioma;
     private String titulo_original;
@@ -45,12 +48,12 @@ public class Artigo implements Serializable {
         this.id = id;
     }
 
-    public Volume getVolume() {
-        return volume;
+    public Volume getVolume_id() {
+        return volume_id;
     }
 
-    public void setVolume(Volume volume) {
-        this.volume = volume;
+    public void setVolume_id(Volume volume_id) {
+        this.volume_id = volume_id;
     }
 
     public int getOrdem_volume() {

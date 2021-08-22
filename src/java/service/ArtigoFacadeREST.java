@@ -19,46 +19,55 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
-import modelo.Volume;
+import modelo.Artigo;
+import DAO.JPAArtigoDAO;
 import DAO.JPAVolumeDAO;
-
+import modelo.Volume;
 
 /**
  *
  * @author Micro
  */
 @Stateless
-@Path("volume")
-public class VolumeFacadeREST extends AbstractFacade<Volume> {
+@Path("artigo")
+public class ArtigoFacadeREST extends AbstractFacade<Artigo> {
 
     @PersistenceContext(unitName = "WebServicePU")
     private EntityManager em;
 
-    public VolumeFacadeREST() {
-        super(Volume.class);
+    public ArtigoFacadeREST() {
+        super(Artigo.class);
     }
 
     @POST
     @Consumes({MediaType.APPLICATION_FORM_URLENCODED})
-    public void create(@FormParam("sigla") String sigla, @FormParam("cidade") String cidade,
-    @FormParam("desc_pt") String desc_pt, @FormParam("desc_en") String desc_en, @FormParam("num_edicao") int num_edicao
-    ,@FormParam("data_inicio") String data_inicio
-    ) {
-        JPAVolumeDAO dao = new JPAVolumeDAO();
-        Volume e = new Volume();
-        e.setSigla_evento(sigla);
-        e.setCidade(cidade);
-        e.setDescricao_pt(desc_pt);
-        e.setDescricao_en(desc_en);
-        e.setNumero_edicao(num_edicao);
-        e.setData_inicio(data_inicio);
-        dao.salva(e);
+    public void create(@FormParam("idioma") String idioma, @FormParam("ordem_volume") int ordem_volume,
+    @FormParam("titulo_original") String titulo_original, @FormParam("titulo_ingles") String titulo_ingles, 
+    @FormParam("resumo_original") String resumo_original, @FormParam("resumo_ingles") String resumo_ingles,
+    @FormParam("pc_original") String pc_original, @FormParam("pc_ingles") String pc_ingles,
+    @FormParam("numero_paginas") int numero_paginas, @FormParam("volume") Long volume_id) {
+        
+        JPAArtigoDAO dao = new JPAArtigoDAO();
+        JPAVolumeDAO volume_dao = new JPAVolumeDAO();
+        Artigo a = new Artigo();
+        a.setIdioma(idioma);
+        a.setOrdem_volume(ordem_volume);
+        a.setTitulo_ingles(titulo_ingles);
+        a.setTitulo_original(titulo_original);
+        a.setResumo_ingles(resumo_ingles);
+        a.setResumo_original(resumo_original);
+        a.setPalavra_chave_ingles(pc_ingles);
+        a.setPalavra_chave_original(pc_original);
+        a.setNumero_paginas(numero_paginas);
+        Volume volume = volume_dao.recupera(volume_id);
+        a.setVolume_id(volume);
+        dao.salva(a);
     }
 
     @PUT
     @Path("{id}")
     @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public void edit(@PathParam("id") Long id, Volume entity) {
+    public void edit(@PathParam("id") Long id, Artigo entity) {
         super.edit(entity);
     }
 
@@ -71,21 +80,21 @@ public class VolumeFacadeREST extends AbstractFacade<Volume> {
     @GET
     @Path("{id}")
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public Volume find(@PathParam("id") Long id) {
+    public Artigo find(@PathParam("id") Long id) {
         return super.find(id);
     }
 
     @GET
     @Override
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public List<Volume> findAll() {
+    public List<Artigo> findAll() {
         return super.findAll();
     }
 
     @GET
     @Path("{from}/{to}")
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public List<Volume> findRange(@PathParam("from") Integer from, @PathParam("to") Integer to) {
+    public List<Artigo> findRange(@PathParam("from") Integer from, @PathParam("to") Integer to) {
         return super.findRange(new int[]{from, to});
     }
 
@@ -102,3 +111,4 @@ public class VolumeFacadeREST extends AbstractFacade<Volume> {
     }
     
 }
+

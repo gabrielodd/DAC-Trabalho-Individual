@@ -30,7 +30,7 @@ public class Volume implements Serializable {
     private String descricao_pt;
     private String descricao_en;
     private int numero_edicao;
-    private Date data_inicio;
+    private String data_inicio;
 
     public Long getId() {
         return id;
@@ -80,11 +80,11 @@ public class Volume implements Serializable {
         this.numero_edicao = numero_edicao;
     }
 
-    public Date getData_inicio() {
+    public String getData_inicio() {
         return data_inicio;
     }
 
-    public void setData_inicio(Date data_inicio) {
+    public void setData_inicio(String data_inicio) {
         this.data_inicio = data_inicio;
     }
 

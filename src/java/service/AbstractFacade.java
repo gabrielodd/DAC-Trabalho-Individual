@@ -7,6 +7,7 @@ package service;
 
 import java.util.List;
 import javax.persistence.EntityManager;
+import javax.servlet.http.HttpServlet;
 
 /**
  *

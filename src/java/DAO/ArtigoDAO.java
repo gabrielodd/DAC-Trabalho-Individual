@@ -14,4 +14,6 @@ public interface ArtigoDAO {
     Artigo recupera(Long id);
 
     List<Artigo> buscaTudo();
+    
+    List<Artigo> buscaArtigos(Long id);
 }

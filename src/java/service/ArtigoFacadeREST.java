@@ -64,15 +64,40 @@ public class ArtigoFacadeREST extends AbstractFacade<Artigo> {
         dao.salva(a);
     }
 
-    @PUT
-    @Path("{id}")
-    @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public void edit(@PathParam("id") Long id, Artigo entity) {
-        super.edit(entity);
+    @POST
+    @Path("edit")
+    @Consumes({MediaType.APPLICATION_FORM_URLENCODED})
+    public void edit(@FormParam("id") Long id, @FormParam("titulo_original") String titulo_original, 
+      @FormParam("titulo_ingles") String titulo_ingles, @FormParam("resumo_original") String resumo_original,
+      @FormParam("resumo_ingles") String resumo_ingles, @FormParam("pc_original") String pc_original,
+      @FormParam("pc_ingles") String pc_ingles, @FormParam("ordem_volume") int ordem_volume){
+        Artigo a = super.find(id);
+        if(!titulo_original.isEmpty()){
+            a.setTitulo_original(titulo_original);
+        }
+        if(!titulo_ingles.isEmpty()){
+            a.setTitulo_ingles(titulo_ingles);
+        }
+        if(!resumo_original.isEmpty()){
+            a.setResumo_original(resumo_original);
+        }
+        if(!resumo_ingles.isEmpty()){
+            a.setResumo_ingles(resumo_ingles);
+        }
+        if(!pc_original.isEmpty()){
+            a.setPalavra_chave_original(pc_original);
+        }
+        if(!pc_ingles.isEmpty()){
+            a.setPalavra_chave_ingles(pc_ingles);
+        }
+        if(ordem_volume != 0){
+            a.setOrdem_volume(ordem_volume);
+        }
+        super.edit(a);
     }
 
-    @DELETE
-    @Path("{id}")
+    @POST
+    @Path("delete/{id}")
     public void remove(@PathParam("id") Long id) {
         super.remove(super.find(id));
     }

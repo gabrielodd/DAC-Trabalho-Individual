@@ -58,20 +58,49 @@ public class AutorFacadeREST extends AbstractFacade<Autor> {
         e.setAfiliacao_ingles(afiliacao_ingles);
         e.setRegistro_orc_id(registro_orc_id);
         e.setPais(pais);
+        e.setOrdem_artigo(ordem_artigo);
         Artigo artigo = artigo_dao.recupera(artigo_id);
         e.setArtigo_id(artigo);
         dao.salva(e);
     }
 
-    @PUT
-    @Path("{id}")
-    @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public void edit(@PathParam("id") Long id, Autor entity) {
-        super.edit(entity);
+    @POST
+    @Path("edit")
+    @Consumes({MediaType.APPLICATION_FORM_URLENCODED})
+    public void edit(@FormParam("id") Long id, @FormParam("primeiro_nome") String primeiro_nome, 
+      @FormParam("nome_meio") String nome_meio, @FormParam("sobrenome") String sobrenome,
+      @FormParam("afiliacao") String afiliacao, @FormParam("afiliacao_en") String afiliacao_en,
+      @FormParam("pais") String pais, @FormParam("registro_orc_id") String registro_orc_id, @FormParam("ordem_artigo") int ordem_artigo){
+        Autor a = super.find(id);
+        if(!primeiro_nome.isEmpty()){
+            a.setPrimeiro_nome(primeiro_nome);
+        }
+        if(!nome_meio.isEmpty()){
+            a.setNome_meio(nome_meio);
+        }
+        if(!sobrenome.isEmpty()){
+            a.setSobrenome(sobrenome);
+        }
+        if(!afiliacao.isEmpty()){
+            a.setAfiliacao(afiliacao);
+        }
+        if(!afiliacao_en.isEmpty()){
+            a.setAfiliacao_ingles(afiliacao_en);
+        }
+        if(!pais.isEmpty()){
+            a.setPais(pais);
+        }
+        if(!registro_orc_id.isEmpty()){
+            a.setRegistro_orc_id(registro_orc_id);
+        }
+        if(ordem_artigo != 0){
+            a.setOrdem_artigo(ordem_artigo);
+        }
+        super.edit(a);
     }
 
-    @DELETE
-    @Path("{id}")
+    @POST
+    @Path("delete/{id}")
     public void remove(@PathParam("id") Long id) {
         super.remove(super.find(id));
     }

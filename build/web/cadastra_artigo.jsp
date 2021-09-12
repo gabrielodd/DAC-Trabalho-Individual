@@ -16,29 +16,48 @@
         <title>Artigo</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
     </head>
     <body>
         <% JPAVolumeDAO dao = new JPAVolumeDAO();
             List<Volume> listVolume = dao.buscaTudo(); 
             request.setAttribute("listVolume", listVolume); %>
-        <h1>Cadastrar Artigo:</h1>
-        <form action="http://localhost:8080/WebService/webresources/artigo" method="post">
-            Volume: 
-            <select name="volume">
-                <c:forEach items="${listVolume}" var="volume">
-              <option value="${volume.id}">[${volume.id}] ${volume.sigla_evento}, ${volume.cidade}</option>
-                </c:forEach>
-            </select> <br/>
-            Ordem Volume: <input type="text" name="ordem_volume"/><br/>
-            Idioma: <input type="text" name="idioma"/><br/>
-            Titulo Original: <input type="text" name="titulo_original"/><br/>
-            Titulo Inglês: <input type="text" name="titulo_ingles"/><br/>
-            Resumo Original: <input type="text" name="resumo_original"/><br/>
-            Resumo Inglês: <input type="text" name="resumo_ingles"/><br/>
-            Palavra Chave Original: <input type="text" name="pc_original"/><br/> 
-            Palavra Chave Inglês: <input type="text" name="pc_ingles"/><br/>
-            Número de páginas: <input type="text" name="numero_paginas"/><br/>
-            <input type="submit" value="Salvar"/>
-        </form>
+        <div class="container" id="formCadastraArtigo"></div>
+        <div class="container bg-light border border-primary rounded">
+        <h4 class="text-center mb-3">Artigo</h4>
+            <form action="http://localhost:8080/WebService/webresources/artigo" method="post" id="formArtigo">
+                <label>Volume</label> 
+                <select name="volume" class="form-control">
+                    <c:forEach items="${listVolume}" var="volume">
+                  <option value="${volume.id}">[${volume.id}] ${volume.sigla_evento}, ${volume.cidade}</option>
+                    </c:forEach>
+                </select>
+                <div class="form-row">
+                    <div class="col-md-4"><label>Ordem Volume</label> <input type="text" name="ordem_volume" class="form-control"/></div>
+                    <div class="col-md-4"><label>Idioma</label> <input type="text" name="idioma" class="form-control"/></div>
+                    <div class="col-md-4"><label>Número de páginas</label> <input type="text" name="numero_paginas" class="form-control"/></div>
+                </div>
+                <label>Titulo Original</label> <input type="text" name="titulo_original" class="form-control"/>
+                <label>Titulo Inglês</label> <input type="text" name="titulo_ingles" class="form-control"/>
+                <label>Resumo Original</label> <input type="text" name="resumo_original" class="form-control"/>
+                <label>Resumo Inglês</label> <input type="text" name="resumo_ingles" class="form-control"/>
+                <label>Palavra Chave Original</label> <input type="text" name="pc_original" class="form-control"/> 
+                <label>Palavra Chave Inglês</label> <input type="text" name="pc_ingles" class="form-control"/>
+                <br>
+                <div class="text-center">
+                    <a class="btn btn-secondary mb-3" href="http://localhost:8080/WebService/index_artigo.jsp" style="width: 250px" role="button">Voltar</a>
+                    <button type="submit" id="botao" class="btn btn-primary mb-3" style="width: 250px"/>Salvar</button>
+                </div>
+            </form>
+        </div>
     </body>
 </html>
+
+<script>
+   document.getElementById("botao").onclick = function () {
+       var div = document.createElement('div');
+       div.className = "alert alert-success";
+       div.innerHTML = "Artigo salvo com sucesso!"
+       document.getElementById("formCadastraArtigo").appendChild(div);
+   }
+</script>

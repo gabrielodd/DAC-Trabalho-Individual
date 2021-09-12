@@ -21,6 +21,11 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import modelo.Volume;
 import DAO.JPAVolumeDAO;
+import java.net.URISyntaxException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.*;
+import javax.ws.rs.core.Response;
 
 
 /**
@@ -55,24 +60,46 @@ public class VolumeFacadeREST extends AbstractFacade<Volume> {
         dao.salva(e);
     }
 
-    @PUT
-    @Path("{id}")
-    @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public void edit(@PathParam("id") Long id, Volume entity) {
-        super.edit(entity);
+    @POST
+    @Path("edit")
+    @Consumes({MediaType.APPLICATION_FORM_URLENCODED})
+    public void edit(@FormParam("id") Long id, @FormParam("sigla") String sigla, @FormParam("numero_edicao") int numero_edicao,
+            @FormParam("desc_pt") String desc_pt, @FormParam("desc_en") String desc_en, 
+            @FormParam("data") String data, @FormParam("cidade") String cidade){
+        Volume a = super.find(id);
+        if(!sigla.isEmpty()){
+            a.setSigla_evento(sigla);
+        }
+        if(!desc_pt.isEmpty()){
+            a.setDescricao_pt(desc_pt);
+        }
+        if(!desc_en.isEmpty()){
+            a.setDescricao_en(desc_en);
+        }
+        if(!cidade.isEmpty()){
+            a.setCidade(cidade);
+        }
+        if(!data.isEmpty()){
+            a.setData_inicio(data);
+        }
+        if(numero_edicao != 0){
+            a.setNumero_edicao(numero_edicao);
+        }
+        super.edit(a);
     }
 
-    @DELETE
-    @Path("{id}")
+    @POST
+    @Path("delete/{id}")
     public void remove(@PathParam("id") Long id) {
         super.remove(super.find(id));
     }
 
     @GET
     @Path("{id}")
-    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public Volume find(@PathParam("id") Long id) {
-        return super.find(id);
+    public String find(@PathParam("id") Long id, HttpServletRequest request){
+        Volume ab = super.find(id);
+        return "<html><body><strong>Sigla: </strong>" + ab.getSigla_evento() + "<br><strong>Numero da Edicao: </strong>"
+                + ab.getNumero_edicao() + "<br><strong>Data: </strong>" + ab.getData_inicio() + "<br><a href='http://localhost:8080/WebService/edit_volume.jsp'>Editar</a></body></html>";
     }
 
     @GET

@@ -8,6 +8,7 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Query;
+import modelo.Artigo;
 import modelo.Volume;
 
 /**
@@ -60,8 +61,18 @@ public class JPAVolumeDAO {
         return e;
     }
     
+    public List<Artigo> buscaArtigos(Volume v) {
+        String jpqlQuery = "SELECT a FROM Artigo a WHERE a.volume_id = :v ORDER BY a.ordem_volume";
+        em = JPAUtil.getEM();
+        Query query = em.createQuery(jpqlQuery);
+        query.setParameter("v", v);
+        List<Artigo> a = query.getResultList();
+        em.close();
+        return a;
+    }
+    
     public List<Volume> buscaTudo() {
-        String jpqlQuery = "SELECT e FROM Volume e";
+        String jpqlQuery = "SELECT e FROM Volume e ORDER BY e.sigla_evento, e.data_inicio";
         em = JPAUtil.getEM();
         Query query = em.createQuery(jpqlQuery);
         List<Volume> e = query.getResultList();

@@ -6,6 +6,7 @@
 package DAO;
 
 import modelo.Volume;
+import modelo.Artigo;
 import java.util.List;
 
 public interface VolumeDAO {
@@ -15,5 +16,7 @@ public interface VolumeDAO {
 
     List<Volume> buscaCidade(String nome);
 
+    List<Artigo> buscaArtigos(Volume v);
+    
     List<Volume> buscaTudo();
 }

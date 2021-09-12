@@ -9,17 +9,39 @@ and open the template in the editor.
         <title>Volume</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
     </head>
     <body>
-        <h1>Cadastrar Volume:</h1>
-        <form action="http://localhost:8080/WebService/webresources/volume" method="post">
-            Sigla: <input type="text" name="sigla"/><br/>
-            Cidade: <input type="text" name="cidade"/><br/>
-            Descrição (pt): <input type="text" name="desc_pt"/><br/>
-            Descrição (en): <input type="text" name="desc_en"/><br/>
-            Numero Edicao: <input type="text" name="num_edicao"/><br/>
-            Data Inicio: <input type="text" name="data_inicio"/><br/> 
-            <input type="submit" value="Salvar"/>
-        </form>
+        <div class="container" id="formCadastraVolume"></div>
+        <div class="container bg-light border border-primary rounded">
+        <h1></h1>
+            <form action="http://localhost:8080/WebService/webresources/volume" method="post">         
+                <h4 class="text-center mb-3">Volume</h4>
+                <hr>
+                <div class="form-row">
+                    <div class="col-md-2"><label>Sigla</label> <input type="text" class="form-control" name="sigla"/> </div>
+                    <div class="col-md-10"><label>Cidade</label> <input type="text" class="form-control" name="cidade"/> </div>
+                </div>
+                <label>Descrição (pt)</label><textarea class="form-control" name="desc_pt"></textarea>             
+                <label>Descrição (en)</label><textarea class="form-control" name="desc_en"></textarea>   
+                <div class="form-row">
+                    <div class="col-md-6"><label>Número Edicao</label> <input type="text" class="form-control" name="num_edicao"/></div>
+                    <div class="col-md-6"><label>Data Inicio</label> <input type="date" class="form-control" name="data_inicio"/></div>
+                </div><br/>
+                <div class="text-center">
+                    <a class="btn btn-secondary mb-3" href="http://localhost:8080/WebService" style="width: 250px" role="button">Voltar</a>
+                    <button id="botao" type="submit" value="Salvar" class="btn btn-primary mb-3" style="width: 250px">Salvar</button>
+                </div>
+            </form>
+        </div>
+        
+        <script>
+            document.getElementById("botao").onclick = function () {
+                var div = document.createElement('div');
+                div.className = "alert alert-success";
+                div.innerHTML = "Volume salvo com sucesso!"
+                document.getElementById("formCadastraVolume").appendChild(div);
+            }
+        </script>
     </body>
 </html>

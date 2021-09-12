@@ -6,11 +6,14 @@
 package modelo;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
@@ -31,6 +34,7 @@ public class Volume implements Serializable {
     private String descricao_en;
     private int numero_edicao;
     private String data_inicio;
+    //List<Artigo> artigos = new ArrayList();
 
     public Long getId() {
         return id;

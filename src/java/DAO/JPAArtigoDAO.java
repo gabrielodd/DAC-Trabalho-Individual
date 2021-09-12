@@ -9,6 +9,8 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Query;
 import modelo.Artigo;
+import modelo.Autor;
+import modelo.Volume;
 
 /**
  *
@@ -55,6 +57,26 @@ public class JPAArtigoDAO {
         em = JPAUtil.getEM();
         Query query = em.createQuery(jpqlQuery);
         List<Artigo> a = query.getResultList();
+        em.close();
+        return a;
+    }
+    
+    public List<Artigo> porVolume(Volume v) {
+        String jpqlQuery = "SELECT a FROM Artigo a where a.volume_id = :v";
+        em = JPAUtil.getEM();
+        Query query = em.createQuery(jpqlQuery);
+        query.setParameter("v", v);
+        List<Artigo> a = query.getResultList();
+        em.close();
+        return a;
+    }
+    
+    public List<Autor> buscaAutores(Artigo artigo) {
+        String jpqlQuery = "SELECT a FROM Autor a WHERE a.artigo_id = :artigo ORDER BY a.ordem_artigo";
+        em = JPAUtil.getEM();
+        Query query = em.createQuery(jpqlQuery);
+        query.setParameter("artigo", artigo);
+        List<Autor> a = query.getResultList();
         em.close();
         return a;
     }
